@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Life With You ❤️</title>
+
+<style>
+
+/* RESET */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI','Noto Color Emoji','Apple Color Emoji',sans-serif;
+}
+
+html, body{
+width:100%;
+height:100%;
+background:black;
+color:white;
+overflow:hidden;
+}
+
+/* BACKGROUND */
+.bg{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:
+radial-gradient(circle at center,#ff2e6320,transparent 70%),
+url("https://www.transparenttextures.com/patterns/stardust.png");
+animation:bgMove 120s linear infinite;
+z-index:-1;
+}
+
+@keyframes bgMove{
+from{background-position:0 0;}
+to{background-position:3000px 3000px;}
+}
+
+/* SCENES */
+.scene{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100dvh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:20px;
+opacity:0;
+pointer-events:none;
+transition:1.2s ease;
+}
+
+.scene.active{
+opacity:1;
+pointer-events:auto;
+}
+
+/* TITLE */
+.title{
+font-size:clamp(20px,5vw,28px);
+text-align:center;
+color:#ff2e63;
+text-shadow:0 0 20px #ff2e63;
+margin-bottom:30px;
+}
+
+/* GIFT BOX */
+.box{
+position:relative;
+width:min(40vw,160px);
+height:min(40vw,160px);
+cursor:pointer;
+animation:float 4s infinite ease-in-out;
+}
+
+@keyframes float{
+50%{transform:translateY(-12px);}
+}
+
+.box-body{
+width:100%;
+height:100%;
+background:#ff2e63;
+border-radius:18px;
+box-shadow:0 0 30px #ff2e63;
+}
+
+.box-lid{
+position:absolute;
+width:100%;
+height:35%;
+background:#ff5c85;
+top:-25%;
+border-radius:18px;
+transform-origin:bottom;
+transition:1s;
+}
+
+.open .box-lid{
+transform:rotateX(140deg);
+}
+
+/* BUTTON */
+.open-btn{
+margin-top:25px;
+padding:14px 30px;
+border:none;
+border-radius:30px;
+background:#ff2e63;
+color:white;
+font-size:16px;
+cursor:pointer;
+box-shadow:0 0 20px #ff2e63;
+}
+
+/* TIMELINE */
+.timeline{
+width:100%;
+max-width:600px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+gap:14px;
+padding:10px;
+overflow-y:auto;
+height:65dvh;
+}
+
+.timeline::-webkit-scrollbar{
+display:none;
+}
+
+/* CARDS */
+.card{
+background:#111;
+padding:18px 12px;
+border-radius:16px;
+text-align:center;
+cursor:pointer;
+box-shadow:0 0 15px #ff2e6320;
+transition:.3s;
+}
+
+.card:active{
+transform:scale(.95);
+}
+
+.card span{
+font-size:12px;
+opacity:.6;
+}
+
+.card strong{
+font-size:14px;
+display:block;
+margin-top:4px;
+}
+
+/* POPUP */
+.popup{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100dvh;
+background:black;
+display:none;
+justify-content:center;
+align-items:center;
+}
+
+.popup img{
+max-width:92vw;
+max-height:70vh;
+border-radius:12px;
+box-shadow:0 0 30px #ff2e63;
+}
+
+.arrow{
+position:absolute;
+top:50%;
+font-size:32px;
+cursor:pointer;
+padding:10px;
+}
+
+.left{left:5px;}
+.right{right:5px;}
+
+.close{
+position:absolute;
+top:15px;
+right:15px;
+font-size:28px;
+cursor:pointer;
+}
+
+/* FINAL MESSAGE */
+.final{
+margin-top:15px;
+font-size:18px;
+text-align:center;
+color:#ff2e63;
+text-shadow:0 0 15px #ff2e63;
+}
+
+/* MOBILE FIX */
+@media(max-width:400px){
+
+.card{
+padding:14px 8px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+
+<audio id="bgm" loop>
+<source src="bgm.mp3">
+</audio>
+
+<!-- SCENE 1 -->
+<div class="scene active" id="scene1">
+
+<div class="title">
+This box contains...<br>
+My Life With You ❤️
+</div>
+
+<div class="box" id="box">
+<div class="box-lid"></div>
+<div class="box-body"></div>
+</div>
+
+<button class="open-btn" onclick="openBox()">Open ❤️</button>
+
+</div>
+
+
+<!-- SCENE 2 -->
+<div class="scene" id="scene2">
+
+<div class="title">Our Valentine Day ❤️</div>
+
+<div class="timeline">
+
+<div class="card" onclick="openLink('https://valentine1.sirancheevi.com/')">
+<span>10 AM</span><strong>Beginning</strong></div>
+
+<div class="card" onclick="openLink('https://valentine2.sirancheevi.com/')">
+<span>11 AM</span><strong>Care</strong></div>
+
+<div class="card" onclick="openLink('https://valentine3.sirancheevi.com/')">
+<span>12 PM</span><strong>Heart</strong></div>
+
+<div class="card" onclick="openLink('https://valentine4.sirancheevi.com/')">
+<span>1 PM</span><strong>Reveal</strong></div>
+
+<div class="card" onclick="openPopup(1)">
+<span>3 PM</span><strong>Kavithai ❤️</strong></div>
+
+<div class="card" onclick="openLink('https://valentine5.sirancheevi.com/')">
+<span>Fun Game</span><strong>Love Play</strong></div>
+
+<div class="card" onclick="openLink('https://valentine6.sirancheevi.com/')">
+<span>Heart Catch</span><strong>You caught me</strong></div>
+
+<div class="card" onclick="openPopup(2)">
+<span>5 PM</span><strong>Kavithai ❤️</strong></div>
+
+<div class="card" onclick="openLink('https://valentine7.sirancheevi.com/')">
+<span>6 PM</span><strong>Evening Feel</strong></div>
+
+<div class="card" onclick="openLink('https://valentine8.sirancheevi.com/')">
+<span>7 PM</span><strong>Music Feel</strong></div>
+
+<div class="card" onclick="openLink('https://valentine9.sirancheevi.com/')">
+<span>8 PM</span><strong>Her Reaction</strong></div>
+
+<div class="card" onclick="openLink('https://happyvalentinesday.sirancheevi.com/')">
+<span>Final</span><strong>Proposal 💍</strong></div>
+
+<div class="card" onclick="openLink('https://youtu.be/EMxyXNvAGm0?si=296ZE--bElwSrkHJ')">
+<span>Video</span><strong>Forever ❤️</strong></div>
+
+</div>
+
+<div class="final">
+You are my forever, Swetha ❤️
+</div>
+
+</div>
+
+
+<!-- POPUP -->
+<div class="popup" id="popup">
+
+<span class="close" onclick="closePopup()">✖</span>
+
+<span class="arrow left" onclick="prev()">❮</span>
+
+<img id="popupImg">
+
+<span class="arrow right" onclick="next()">❯</span>
+
+</div>
+
+
+<script>
+
+/* MUSIC */
+let bgm=document.getElementById("bgm");
+
+/* OPEN BOX */
+function openBox(){
+
+bgm.play().catch(()=>{});
+
+document.getElementById("box").classList.add("open");
+
+setTimeout(()=>{
+
+document.getElementById("scene1").classList.remove("active");
+document.getElementById("scene2").classList.add("active");
+
+document.body.style.overflowY="auto";
+
+},1200);
+
+}
+
+/* LINKS */
+function openLink(url){
+window.open(url,"_blank");
+}
+
+/* IMAGES */
+let kavithai1=[
+"1000161008.jpg",
+"1000161006.jpg",
+"1000161007.jpg"
+];
+
+let kavithai2=[
+"1000161038.jpg",
+"1000161037.jpg",
+"1000161018.jpg"
+];
+
+let currentSet=[];
+let index=0;
+
+function openPopup(set){
+
+currentSet=set==1?kavithai1:kavithai2;
+index=0;
+
+popup.style.display="flex";
+popupImg.src=currentSet[index];
+
+}
+
+function closePopup(){
+popup.style.display="none";
+}
+
+function next(){
+index=(index+1)%currentSet.length;
+popupImg.src=currentSet[index];
+}
+
+function prev(){
+index=(index-1+currentSet.length)%currentSet.length;
+popupImg.src=currentSet[index];
+}
+
+</script>
+
+</body>
+</html>

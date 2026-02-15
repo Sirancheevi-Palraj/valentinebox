@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Life With You ❤️</title>
+
+<style>
+
+body{
+margin:0;
+font-family:'Segoe UI',sans-serif;
+background:black;
+color:white;
+overflow-x:hidden;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+/* Background glow */
+body:before{
+content:"";
+position:fixed;
+width:100%;
+height:100%;
+background:radial-gradient(circle at center,#ff2e6350,transparent 70%);
+z-index:-1;
+}
+
+/* Title */
+h1{
+text-align:center;
+margin:40px 0;
+font-size:28px;
+color:#ff2e63;
+text-shadow:0 0 20px #ff2e63;
+}
+
+/* Grid */
+.container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+gap:18px;
+padding:20px;
+max-width:600px;
+margin:auto;
+}
+
+/* Cards */
+.card{
+background:#111;
+border-radius:18px;
+padding:25px 15px;
+text-align:center;
+cursor:pointer;
+transition:0.4s;
+box-shadow:0 0 15px #ff2e6320;
+}
+
+.card:hover{
+transform:translateY(-6px);
+box-shadow:0 0 25px #ff2e63;
+}
+
+.card span{
+display:block;
+font-size:14px;
+opacity:0.7;
+margin-bottom:8px;
+}
+
+.card strong{
+font-size:16px;
+}
+
+/* Proposal Section */
+.proposal{
+text-align:center;
+margin:60px 20px;
+padding:30px;
+border-radius:20px;
+background:#111;
+box-shadow:0 0 30px #ff2e63;
+}
+
+/* Popup */
+.popup{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+display:none;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+}
+
+.popup img{
+max-width:90%;
+border-radius:15px;
+box-shadow:0 0 30px #ff2e63;
+}
+
+.arrow{
+position:absolute;
+top:50%;
+font-size:40px;
+color:white;
+cursor:pointer;
+user-select:none;
+}
+
+.left{ left:20px; }
+.right{ right:20px; }
+
+.close{
+position:absolute;
+top:20px;
+right:20px;
+font-size:30px;
+cursor:pointer;
+}
+
+audio{
+display:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>Our Valentine Day ❤️</h1>
+
+<div class="container">
+
+<div class="card" onclick="openLink('https://valentine1.sirancheevi.com/')">
+<span>10 AM</span>
+<strong>Beginning</strong>
+</div>
+
+<div class="card" onclick="openLink('https://valentine2.sirancheevi.com/')">
+<span>11 AM</span>
+<strong>Care</strong>
+</div>
+
+<div class="card" onclick="openLink('https://valentine3.sirancheevi.com/')">
+<span>12 PM</span>
+<strong>Heart</strong>
+</div>
+
+<div class="card" onclick="openLink('https://valentine4.sirancheevi.com/')">
+<span>1 PM</span>
+<strong>Reveal</strong>
+</div>
+
+<div class="card" onclick="openPopup(1)">
+<span>2 PM</span>
+<strong>Kavithai ❤️</strong>
+</div>
+
+<div class="card" onclick="openLink('https://valentine5.sirancheevi.com/')">
+<span>3 PM</span>
+<strong>Fun Time</strong>
+</div>
+
+<div class="card" onclick="openLink('https://valentine6.sirancheevi.com/')">
+<span>4 PM</span>
+<strong>Heart Catch</strong>
+</div>
+
+<div class="card" onclick="openPopup(2)">
+<span>5 PM</span>
+<strong>Kavithai 2 ❤️</strong>
+</div>
+
+<div class="card" onclick="openLink('https://valentine7.sirancheevi.com/')">
+<span>6 PM</span>
+<strong>Evening Feel</strong>
+</div>
+
+<div class="card" onclick="openLink('https://valentine8.sirancheevi.com/')">
+<span>7 PM</span>
+<strong>Music Feel</strong>
+</div>
+
+<div class="card" onclick="openLink('https://valentine9.sirancheevi.com/')">
+<span>8 PM</span>
+<strong>Her Reaction</strong>
+</div>
+
+</div>
+
+<div class="proposal">
+<h2>Final Proposal 💍</h2>
+<button onclick="openLink('https://happyvalentinesday.sirancheevi.com/')">
+Open Our Proposal ❤️
+</button>
+<br><br>
+<button onclick="openLink('https://youtu.be/EMxyXNvAGm0?si=296ZE--bElwSrkHJ')">
+Watch Proposal Video 🎥
+</button>
+</div>
+
+<!-- Popup -->
+<div class="popup" id="popup">
+<span class="close" onclick="closePopup()">✖</span>
+<span class="arrow left" onclick="prev()">❮</span>
+<img id="popupImg">
+<span class="arrow right" onclick="next()">❯</span>
+</div>
+
+<audio id="bgm" loop>
+<source src="bgm.mp3">
+</audio>
+
+<script>
+
+let bgm=document.getElementById("bgm");
+
+document.body.addEventListener("click",()=>{
+bgm.play().catch(()=>{});
+},{once:true});
+
+function openLink(url){
+window.open(url,"_blank");
+}
+
+/* IMAGE SETS */
+let images1=[
+"1000161008.jpg",
+"1000161006.jpg",
+"1000161007.jpg"
+];
+
+let images2=[
+"1000161038.jpg",
+"1000161037.jpg",
+"1000161018.jpg"
+];
+
+let currentSet=[];
+let index=0;
+
+function openPopup(set){
+currentSet = set==1 ? images1 : images2;
+index=0;
+document.getElementById("popup").style.display="flex";
+document.getElementById("popupImg").src=currentSet[index];
+}
+
+function closePopup(){
+document.getElementById("popup").style.display="none";
+}
+
+function next(){
+index++;
+if(index>=currentSet.length) index=0;
+document.getElementById("popupImg").src=currentSet[index];
+}
+
+function prev(){
+index--;
+if(index<0) index=currentSet.length-1;
+document.getElementById("popupImg").src=currentSet[index];
+}
+
+</script>
+
+</body>
+</html>
